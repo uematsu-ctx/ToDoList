@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Error</title>
+<body>
+	<!-- 各種エラーの内容の表示 -->
+	<h1 th:text="${status}+''+${error}"></h1>
+	<p th:text="${message}"></p>
+	<p>申し訳ございません。エラーが発生しました</p>
+	<form method="post" th:action="@{/logout}">
+		<button class="btn btn-link" type="submit">ログアウト</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Bootstrapの設定 -->
+<link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+	rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+
+<title>SignUp</title>
+</head>
+<body>
+	<div th:fragment="signUp_contents">
+		<div class="col-sm-5">
+			<div class="page-header">
+				<h1>ユーザー登録画面</h1>
+			</div>
+			<!-- ユーザーIDが重複していた時のエラーメッセージ -->
+			<p th:text="${error}"></p>
+
+			<form method="post" th:action="@{/signUp}" th:object="${signUpForm}">
+				<table class="table table-bordered table-hover">
+					<!-- ユーザーIDの入力エリア -->
+					<tr>
+						<th class="active col-sm-3">ユーザーID</th>
+						<td><div class="form-group">
+								<input type="text" class="form-control" th:field="*{userId}"
+									placeholder="(例)java@xxx.co.jp">
+								<!-- 個別エラーメッセージ -->
+								<span class="text-danger" th:if="${#fields.hasErrors('userId')}"
+									th:errors="*{userId}">userId error</span>
+							</div></td>
+					</tr>
+					<!-- ユーザー名の入力エリア -->
+					<tr>
+						<th class="active col-sm-3">ユーザー名</th>
+						<td>
+							<div class="form-group">
+								<input type="text" class="form-control" th:field="*{userName}">
+								<!-- 個別エラーメッセージの表示 -->
+								<span class="text-danger"
+									th:if="${#fields.hasErrors('userName')}"
+									th:errors="*{userName}">userName error</span>
+							</div>
+						</td>
+					</tr>
+					<!-- パスワードの入力エリア -->
+					<tr>
+						<th class="active">パスワード</th>
+						<td>
+							<div class="form-group">
+								<input type="text" class="form-control" th:field="*{password}"
+									placeholder="半角英数字4文字以上">
+								<!-- 個別エラーメッセージの表示 -->
+								<span class="text-danger"
+									th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}">password error</span>
+							</div>
+						</td>
+					</tr>
+					<!-- 誕生日の入力エリア -->
+					<tr>
+						<th class="active">誕生日</th>
+						<td>
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="yyyy/MM/dd"
+									th:field="*{birthday}"> <input type="button" value="計算"
+									onClick="getAge()">
+								<!-- 個別エラーメッセージの表示 -->
+								<span class="text-danger"
+									th:if="${#fields.hasErrors('birthday')}"
+									th:errors="*{birthday}">birthday error</span>
+							</div>
+						</td>
+					</tr>
+					<!-- 年齢の入力エリア -->
+					<tr>
+
+						<th class="active">年齢</th>
+						<td><div class="form-group">
+								<input type="text" th:field="*{age}">
+								<!-- 個別エラーメッセージの表示 -->
+								<span class="text-danger" th:if="${#fields.hasErrors('age')}"
+									th:errors="*{age}">age error</span>
+							</div></td>
+					</tr>
+
+				</table>
+
+				<!-- ユーザー登録ボタン -->
+				<button class="btn btn-primary" type="submit">ユーザー登録</button>
+				<button class="btn btn-default pull-right" type="button"
+					onclick="history.back()">キャンセル</button>
+			</form>
+		</div>
+		<script>
+			function getAge() {
+				//入力された誕生日を取得
+				var year = document.getElementById('birthday').value;
+
+				// 現在日時と誕生日日時のDateを取得
+				var dateNow = new Date();
+				var dateBirthday = new Date(year);
+
+				// 現在日時までのミリ秒と日数を計算
+				var timeTillNow = dateNow.getTime() - dateBirthday.getTime();
+				var daysTillNow = timeTillNow / (1000 * 3600 * 24);
+
+				// 年齢の年部分を計算
+				const DAYS_PER_MONTH = 365 / 12;
+				var age = Math.floor(daysTillNow / 365);
+				document.getElementById('age').value = age;
+			}
+		</script>
+	</div>
+
+</body>
+</html>

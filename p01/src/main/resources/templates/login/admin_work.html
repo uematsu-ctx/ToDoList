@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>アドミン</title>
+</head>
+<body>
+	<div th:fragment="admin_work_contents">
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="page-header">
+					<h1>アドミン権限専用画面</h1>
+					<div>
+						<form method="post" th:action="@{/admin_work}"
+							th:object="${signUpForm}">
+							<table class="table table-bordered table-hover table-striped">
+								<tr>
+									<!-- ユーザーID(入力不可) -->
+									<th class="active col-sm-2">ユーザーID</th>
+									<td class="col-sm-3">
+										<div class="form-group">
+											<input type="text" class="form-control" th:field="*{userId}"
+												readonly="readonly" />
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<!-- ユーザー名(入力不可) -->
+									<th class="active col-sm-2">ユーザー名</th>
+									<td class="col-sm-3">
+										<div class="form-group">
+											<input type="text" class="form-control"
+												th:field="*{userName}" readonly="readonly" />
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<!-- パスワード(入力不可) -->
+									<th class="active">パスワード</th>
+									<td>
+										<div class="form-group">
+											<input type="text" class="form-control"
+												th:field="*{password}" readonly="readonly" />
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<!-- 誕生日(入力不可) -->
+									<th class="active">誕生日</th>
+									<td>
+										<div class="form-group">
+											<input type="text" class="form-control"
+												placeholder="yyyy/MM/dd" th:field="*{birthday}"
+												readonly="readonly">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<!-- 年齢(入力不可) -->
+									<th class="active">年齢</th>
+									<td><div class="form-group">
+											<input type="text" class="form-control" th:field="*{age}"
+												readonly="readonly">
+
+										</div></td>
+								</tr>
+								<tr>
+									<!-- 役職 -->
+									<th class="active">役職</th>
+									<td>
+										<div class="form-group">
+											<div th:each="item:${radioRole}">
+												<input type="radio" name="radioRole"
+													th:value="${item.value}" th:text="${item.key}"
+													th:field="*{role}"></input>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<button class="btn btn-primary" type="submit" name="update">更新</button>
+							<button class="btn btn-danger pull-right" type="submit"
+								name="delete">削除</button>
+							<button class="btn btn-default center-block" type="button"
+								onclick="history.back()">戻る</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

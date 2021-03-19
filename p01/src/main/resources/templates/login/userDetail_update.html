@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Password</title>
+</head>
+<body>
+	<div th:fragment="userDetail_update_contents">
+		<div class="col-sm-5">
+			<div class="page-header">
+				<h1>ユーザーパスワード更新</h1>
+			</div>
+			<form method="post" th:action="@{/userDetail_update}"
+				th:object="${passwordUpdateForm}">
+				<table class="table table-bordered table-hover">
+					<tr>
+						<!-- ユーザーID(入力不可) -->
+						<th class="active col-sm-2">ユーザーID</th>
+						<td class="col-sm-3">
+							<p th:text="${ud}"></p> <input type="hidden" class="form-control"
+							th:field="*{userId}">
+						</td>
+					</tr>
+					<tr>
+						<!-- パスワード -->
+						<th class="active">パスワード</th>
+						<td><input type="text" class="form-control"
+							th:field="*{password}"placeholder="半角英数字4文字以上で入力">
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('password')}?'has-error'">
+								<span class="text-danger"
+									th:if="${#fields.hasErrors('password')}"
+									th:errors="*{password}">password error</span>
+							</div></td>
+					</tr>
+				</table>
+
+				<button class="btn btn-primary " type="submit" name="update">更新</button>
+				<button class="btn btn-default pull-right" type="button"
+					onclick="history.back()">キャンセル</button>
+				<label class="text-info" th:text="${result}">結果表示</label><br />
+			</form>
+		</div>
+	</div>
+</body>
+</html>

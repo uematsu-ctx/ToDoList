@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:src="@{webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<title>Renew</title>
+</head>
+<body>
+	<div th:fragment="renew_contents">
+		<div class="col-sm-5">
+			<div class="page-header">
+				<h1>作業更新</h1>
+			</div>
+			<form method="post" th:action="@{/renew}" th:object="${registerForm}">
+				<table class="table table-bordered table-hover">
+					<tr>
+						<th class="active colsm-3">項目名</th>
+						<td><input type="text" th:field="*{itemName}"> <input
+							type="hidden" th:field="*{id}">
+							<div class="form-group">
+								<span class="text-danger" th:if="${#fields.hasErrors()}"
+									th:errors="*{itemName}">item_name error</span>
+							</div></td>
+					</tr>
+					<tr>
+						<th class="active">担当者</th>
+						<td><select id="singleSelect" th:field="*{personId}">
+								<option th:each="item:${selectItems}" th:value="${item.id}"
+									th:text="${item.user_name}"
+									th:selected="${item.id==registerForm.id}"></option>
+						</select></td>
+					</tr>
+					<tr>
+						<th class="active">期限日</th>
+						<td><input type="text" placeholder="yyyy/MM/dd"
+							th:field="*{expireDate}">
+							<div class="form-group">
+								<span class="text-danger"
+									th:if="${#fields.hasErrors('expireDate')}"
+									th:errors="*{expireDate}">expire_date error</span>
+							</div></td>
+					</tr>
+					<tr>
+						<th class="active">完了</th>
+						<td><input type="checkbox" th:field="*{check}"></td>
+					</tr>
+				</table>
+				<button class="btn btn-primary" type="submit">更新</button>
+				<button class="btn btn-default pull-right" type="button"
+					onclick="history.back()">キャンセル</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
