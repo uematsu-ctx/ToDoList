@@ -9,5 +9,4 @@
 
 ![作業登録](https://user-images.githubusercontent.com/75824193/111861082-e416e880-898e-11eb-88af-ef9cacac2c80.png)
 
-![01 ポートフォリオ](https://user-images.githubusercontent.com/75824193/114500056-4d260f00-9c62-11eb-8ad4-c784fdd6b0cc.gif)
-
+![01 ポートフォリオ](https://user-images.githubusercontent.com/75824193/114655218-bc653700-9d26-11eb-863b-b1c89119d848.gif)
