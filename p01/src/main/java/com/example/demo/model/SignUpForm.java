@@ -35,7 +35,7 @@ public class SignUpForm {
 	@Pattern(regexp = "^[a-zA-Z0-9]+$", groups = ValidGroup2.class)
 	private String password;//パスワード
 
-	//必須入力、
+	//必須入力、誕生日をyyyy/MM/dd形式
 	@NotNull(message = "{require_check}", groups = ValidGroup1.class)
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date birthday;//誕生日
