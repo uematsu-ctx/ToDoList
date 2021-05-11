@@ -77,12 +77,11 @@ public class UserController {
 
 	//ユーザー登録画面のGET用コントローラー
 	@GetMapping("/signUp")
-	public String getSignUp(@ModelAttribute SignUpForm form, Model model) {
+	public String getSignUp(@ModelAttribute SignUpForm form) {
 
-		model.addAttribute("contents", "login/signUp::signUp_contents");
 
 		//signup.htmlに画面遷移
-		return "login/listLayout";
+		return "login/signUp";
 	}
 
 	//ユーザー登録画面のPOST用コントローラー
@@ -94,7 +93,7 @@ public class UserController {
 		//入力チェックに引っかかった場合、ユーザー登録画面に戻る。
 		if (bindingResult.hasErrors()) {
 			//GETリクエスト用のメソッドを呼び出して、ユーザー登録画面に戻る。
-			return getSignUp(form, model);
+			return getSignUp(form);
 		}
 
 		//insert用変数
@@ -124,7 +123,7 @@ public class UserController {
 			model.addAttribute("error", s);
 
 			//GETリクエスト用のメソッドを呼び出して、ユーザー登録画面に戻る。
-			return getSignUp(form, model);
+			return getSignUp(form);
 		}
 		try {
 			//ユーザー登録処理
