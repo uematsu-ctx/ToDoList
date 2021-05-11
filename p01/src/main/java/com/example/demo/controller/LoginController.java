@@ -18,7 +18,7 @@ public class LoginController{
 	@PostMapping("/login")
 	public String postLogin(Model model) {
 
-		//list.htmlに遷移
+		//list.htmlに遷移"
 		return "redirect:/list";
 	}
 }
