@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -119,12 +117,6 @@ public class ToDoController {
 			return getRegister(form, model);
 		}
 
-		//Calendarクラスのオブジェクトを生成
-		Calendar cl = Calendar.getInstance();
-
-		//SimpleDateFormatクラスでフォーマットを設定
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
-
 		//insert用変数
 		ToDoItem td = new ToDoItem();
 
@@ -204,14 +196,8 @@ public class ToDoController {
 			return getRenew(form, model, form.getId());
 		}
 
-		//カレンダークラスのオブジェクトを生成する。
-		Calendar cl = Calendar.getInstance();
-
 		//Dateクラスのオブジェクトを生成する。
 		Date date = new Date();
-
-		//SimpleDateFormatクラスでフォーマットパターンを設定する
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
 
 		//完了日のチェックが入ったら、今日の日付を表示。入ってなかったら未と表示。
 		if (form.getCheck()) {
@@ -252,14 +238,8 @@ public class ToDoController {
 	@GetMapping("/finished_date/{id}")
 	public String getFinished_Date(Model model, @PathVariable("id") int id) {
 
-		//Calendarクラスのオブジェクトを生成する。
-		Calendar cl = Calendar.getInstance();
-
 		//Dateクラスのオブジェクトを生成する。
 		Date date = new Date();
-
-		//SinpleDateFomatクラスのでフォーマットを設定する。
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 		//ToDoItemの更新処理
 		ToDoItem todo = todoService.selectOne(id);
@@ -283,12 +263,6 @@ public class ToDoController {
 	//未完了の作業を選択したときのGET用コントローラー
 	@GetMapping("/un_finished_date/{id}")
 	public String getUn_Finished_Date(Model model, @PathVariable("id") int id) {
-
-		//Calendarクラスのオブジェクトを生成する。
-		Calendar cl = Calendar.getInstance();
-
-		//SimpleDateFormatクラスでフォーマットパターンを設定する。
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 		//TodoItemの更新処理
 		ToDoItem todo = todoService.selectOne(id);
@@ -343,14 +317,8 @@ public class ToDoController {
 	@PostMapping("/delete")
 	public String postDelete(@ModelAttribute RegisterForm form, Model model) {
 
-		//Calendarクラスのオブジェクトを生成する。
-		Calendar cl = Calendar.getInstance();
-
 		//Dateクラスのオブジェクトを生成する。
 		Date date = new Date();
-
-		//SimpleDateFormatクラスでフォーマットパターンを設定する。
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
 		if (form.getCheck()) {
 			form.setFinishedDate(date);
