@@ -57,8 +57,8 @@ public class ToDoDaoJdbcImpl implements ToDoDao {
 
 		//1件登録
 		int rowNumber = jdbc.update(
-				"INSERT INTO todo_items(item_name,expire_date,finished_date,person_id)VALUES(?,?,?,?)",
-				todo_item.getItem_name(), todo_item.getExpire_date(), todo_item.getFinished_date(),
+				"INSERT INTO todo_items(item_name,registration_date,expire_date,finished_date,person_id)VALUES(?,?,?,?,?)",
+				todo_item.getItem_name(),todo_item.getRegistration_date(), todo_item.getExpire_date(), todo_item.getFinished_date(),
 				todo_item.getPerson_id());
 
 		return rowNumber;
