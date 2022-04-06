@@ -131,7 +131,9 @@ public class ToDoController {
 		//日付のインスタンスの生成
 		Date date = new Date();
 
+		//登録日をデータベースへ入力
 		td.setRegistration_date(date);
+
 		//完了していたら日付を、完了していなかったら未と表示。
 		if (form.getCheck()) {
 			td.setFinished_date(date);
@@ -152,7 +154,7 @@ public class ToDoController {
 			model.addAttribute("result", "登録失敗(トランザクション)");
 			e.printStackTrace();
 		}
-		
+
 		//list.htmlに画面遷移
 		return getToDoList(model);
 	}
