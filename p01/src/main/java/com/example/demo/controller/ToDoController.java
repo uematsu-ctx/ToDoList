@@ -234,6 +234,7 @@ public class ToDoController {
 			}
 		} catch (DataAccessException e) {
 			model.addAttribute("result", "更新失敗(トランザクション)");
+			e.printStackTrace();
 		}
 		//list.htmlに画面遷移
 		return getToDoList(model);
@@ -340,6 +341,7 @@ public class ToDoController {
 			}
 		} catch (DataAccessException e) {
 			model.addAttribute("result", "削除失敗");
+			e.printStackTrace();
 		}
 		//list.htmlに画面遷移
 		return getToDoList(model);
